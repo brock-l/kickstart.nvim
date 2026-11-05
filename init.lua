@@ -110,7 +110,7 @@ do
   vim.o.number = true
   -- You can also add relative line numbers, to help with jumping.
   --  Experiment for yourself to see if you like it!
-  -- vim.o.relativenumber = true
+  vim.o.relativenumber = true
 
   -- Enable mouse mode, can be useful for resizing splits for example!
   vim.o.mouse = 'a'
@@ -136,6 +136,9 @@ do
 
   -- Keep signcolumn on by default
   vim.o.signcolumn = 'yes'
+
+  -- Merge signcolumn with line numbers
+  -- vim.o.signcolumn = 'number'
 
   -- Decrease update time
   vim.o.updatetime = 250
@@ -250,6 +253,14 @@ do
     desc = 'Highlight when yanking (copying) text',
     group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
     callback = function() vim.hl.on_yank() end,
+  })
+
+  vim.api.nvim_create_autocmd('ColorScheme', {
+    pattern = '*',
+    callback = function()
+      vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
+      vim.api.nvim_set_hl(0, 'NormalNC', { bg = 'none' })
+      vim.api.nvim_set_hl(0, 'SignColumn', { bg = 'none' }) end,
   })
 end
 
