@@ -99,7 +99,7 @@ do
   vim.g.maplocalleader = ' '
 
   -- Set to true if you have a Nerd Font installed and selected in the terminal
-  vim.g.have_nerd_font = false
+  vim.g.have_nerd_font = true
 
   -- [[ Setting options ]]
   --  See `:help vim.o`
@@ -256,6 +256,8 @@ do
   })
 
   vim.api.nvim_create_autocmd('ColorScheme', {
+    desc = "Use the terminal emulator's background for nvim",
+    group = vim.api.nvim_create_augroup('remove-nvim-background', { clear = true }),
     pattern = '*',
     callback = function()
       vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
@@ -445,7 +447,7 @@ do
   -- Load the colorscheme here.
   -- Like many other themes, this one has different styles, and you could load
   -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-  vim.cmd.colorscheme 'tokyonight-night'
+  vim.cmd.colorscheme 'tokyonight-moon'
 
   -- Highlight todo, notes, etc in comments
   vim.pack.add { gh 'folke/todo-comments.nvim' }
@@ -545,13 +547,13 @@ do
   require('telescope').setup {
     -- You can put your default mappings / updates / etc. in here
     --  All the info you're looking for is in `:help telescope.setup()`
-    --
-    -- defaults = {
-    --   mappings = {
-    --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-    --   },
-    -- },
-    -- pickers = {}
+
+    defaults = {},
+    pickers = {
+      colorscheme = {
+        enable_preview = true
+      }
+    },
     extensions = {
       ['ui-select'] = { require('telescope.themes').get_dropdown() },
     },
