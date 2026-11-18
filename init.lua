@@ -151,6 +151,14 @@ do
   vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
   vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+  -- Cycle focus through all windows
+  vim.keymap.set('n', '<Tab>', '<C-w>w', { desc = 'Cycle focus through all windows' })
+
+  -- Resize windows with CTRL+Arrow Keys
+  vim.keymap.set('n', '<C-Left>', '<cmd>vertical resize -2<CR>', { desc = 'Shrink window width' })
+  vim.keymap.set('n', '<C-Down>', '<cmd>resize -2<CR>', { desc = 'Shrink window height' })
+  vim.keymap.set('n', '<C-Up>', '<cmd>resize +2<CR>', { desc = 'Grow window height' })
+  vim.keymap.set('n', '<C-Right>', '<cmd>vertical resize +2<CR>', { desc = 'Grow window width' })
 
   -- Keybind to open terminal to left
   vim.keymap.set('n', '<leader>T', '<C-w>v<cmd>term<CR>i', { desc = 'Open and enter terminal window to right' })
