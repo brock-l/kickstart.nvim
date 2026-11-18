@@ -163,6 +163,21 @@ do
   -- Keybind to open terminal to left
   vim.keymap.set('n', '<leader>T', '<C-w>v<cmd>term<CR>i', { desc = 'Open and enter terminal window to right' })
 
+
+  -- Shorter indent/dedent in normal mode
+  vim.keymap.set('n', '>', '>>', { desc = 'Indent' })
+  vim.keymap.set('n', '<lt>', '<lt><lt>', { desc = 'Dedent' })
+  vim.keymap.set('n', '=', '==', { desc = 'Auto Indent' })
+
+  -- Stay in visual mode after indent/dedent
+  vim.keymap.set('v', '>', '>gv', { desc = 'Indent' })
+  vim.keymap.set('v', '<lt>', '<lt>gv', { desc = 'Dedent' })
+  vim.keymap.set('v', '=', '=gv', { desc = 'Auto Indent' })
+
+  -- Move and reindent visual selection with Shift+JK
+  vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+  vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
   -- [[ Basic Autocommands ]]
   --  See `:help lua-guide-autocommands`
 
